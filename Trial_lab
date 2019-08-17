@@ -1,0 +1,52 @@
+# que1
+
+.data
+array:	.word 1, 2, 3
+	.text
+	.globl main
+main:
+	li $s1,0
+	li $s2,39
+	li $s3,0
+	la $s0,array
+	mul $s3,$s1,4
+	add $s0,$s0,$s3
+loop:	beq $s1,$s2,exit
+	mul $s4,$s1,2
+	sw $s4,0($s0)
+	lw $s5,0($s0)
+	move $a0,$s5
+	li $v0,1
+	syscall
+	add $s0,$s0,4
+	add $s1,$s1,1
+	b loop
+exit: 	li $v0,10
+	syscall
+
+
+# que2
+
+.data
+array:	
+	.text
+	.globl main
+main:
+	li $s1,0
+	li $s2,47
+	li $s3,0
+	la $s0,array
+	mul $s3,$s1,4
+	add $s0,$s0,$s3
+loop:	beq $s1,$s2,exit
+	addi $s4,$s1,33
+	sw $s4,0($s0)
+	lw $s5,0($s0)
+	move $a0,$s5
+	li $v0,1
+	syscall
+	addi $s0,$s0,4
+	addi $s1,$s1,1
+	b loop
+exit: 	li $v0,10
+	syscall
