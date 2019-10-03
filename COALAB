@@ -1,0 +1,183 @@
+#que 1 
+
+            .data
+
+	prompt :  .asciiz "Please enter value:"
+
+	prompt1: .asciiz "Completed!"
+
+	          .text
+
+	          .globl main
+
+main:       li $v0,4
+
+            la $a0, prompt
+
+            syscall
+
+
+
+            li $v0,5
+
+            syscall
+
+            move $t0,$v0
+
+
+
+            li $t1,2
+
+            li $t2,10
+
+
+
+loop:       div $t0,$t2
+
+            mfhi $t3
+
+            mflo $t0
+
+check_rem:  beq $t0,$zero,exit
+
+            div $t3,$t1
+
+            mfhi $t4
+
+            beq $t4,$zero,loop
+
+odd:        li $v0,1
+
+            move $a0, $t3
+
+            syscall
+
+            j loop
+
+
+
+exit:     div $t3,$t2
+
+          mfhi $t4
+
+          beq $t4,$zero,end
+
+          li $v0,1
+
+          move $a0, $t3
+
+          syscall
+
+
+
+end:     li $v0,4
+
+         la $a0, prompt1
+
+         syscall
+
+
+
+         li $v0,10
+
+         syscall
+         
+         
+         
+#que 4 
+
+
+
+            .data
+
+	prompt : .asciiz "Please enter value:"
+
+	prompt1: .asciiz "Completed!"
+
+	         .text
+
+	         .globl main
+
+  main:     li $v0,4
+
+            la $a0, prompt
+
+            syscall
+
+
+
+            li $v0,5
+
+            syscall
+
+            move $t0,$v0
+
+
+
+            li $t1,2
+
+            li $t2,10
+
+
+
+            li $t5,0
+
+loop:       div $t0,$t2
+
+            mfhi $t3
+
+            mflo $t0
+
+check_rem:  beq $t0,$zero,exit
+
+            div $t3,$t1
+
+            mfhi $t4
+
+            bne $t4,$zero,loop
+
+even:       mult $t3,$t3
+
+            mflo $t4
+
+            add $t5,$t5,$t4
+
+            j loop
+
+
+
+exit:       div $t3,$t2
+
+            mfhi $t4
+
+            beq $t4,$zero,end
+
+            mult $t3,$t3
+
+            mflo $t4
+
+            add $t5,$t5,$t4
+
+
+
+end:        li $v0,4
+
+            la $a0, prompt1
+
+            syscall
+
+
+
+            li $v0,1
+
+            move $a0,$t5
+
+            syscall
+
+
+
+            li $v0,10
+
+            syscall
+            
+            
